@@ -15,6 +15,12 @@ class Table:
     def __len__(self):
         return len(self.table)
 
+    def keys(self):
+        return self.table.keys()
+
+    def values(self):
+        return [status[1] for status in self.table.items()]
+
     def append(self, card):
         # Only allow same ranks already on table (after first)
         if self.table and card.rank not in self.ranks:

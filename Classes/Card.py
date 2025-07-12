@@ -18,12 +18,10 @@ class Card:
         return cls.rank_values[rank1] > cls.rank_values[rank2]
 
     @classmethod
-    def beats(cls, attacker, defender, trump):
-        if attacker.suit == defender.suit:
-            return cls.compare_ranks(attacker.rank, defender.rank)
-        elif attacker.suit == trump:
+    def beats(cls, defender, attacker, trump):
+        if defender.suit == attacker.suit:
+            return cls.rank_values[defender.rank] > cls.rank_values[attacker.rank]
+        elif defender.suit == trump and attacker.suit != trump:
             return True
-        elif defender.suit == trump:
-            return False
         else:
             return False

@@ -16,4 +16,4 @@ class Player:
         trump_cards = [card for card in self.hand if card.suit == trump]
         if not trump_cards:
             return None
-        return min(trump_cards, key=lambda card: Card.ranks.index(card.rank))
+        return min(trump_cards, key=lambda card: Card.rank_values[card.rank])
