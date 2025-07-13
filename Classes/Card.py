@@ -13,6 +13,12 @@ class Card:
     def __repr__(self):
         return str(self)
 
+    def __eq__(self, other):
+        return isinstance(other, Card) and self.rank == other.rank and self.suit == other.suit
+
+    def __hash__(self):
+        return hash((self.rank, self.suit))
+
     @classmethod
     def compare_ranks(cls, rank1, rank2):
         return cls.rank_values[rank1] > cls.rank_values[rank2]

@@ -32,6 +32,7 @@ class Table:
     def beat(self, attack_card, defend_card):
         if attack_card in self.table:
             self.table[attack_card] = [True, defend_card]
+            self.ranks.add(defend_card.rank)
 
     def can_beat(self, defender_hand, trump_suit):
         for attack_card, (is_beaten, _) in self.table.items():
