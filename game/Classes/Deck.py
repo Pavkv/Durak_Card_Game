@@ -18,4 +18,4 @@ class Deck:
         return self.cards[-1] if self.cards else None
 
     def deal(self, num_cards):
-        return [self.cards.pop() for _ in range(min(6 - num_cards, len(self.cards)))]
+        return [self.cards.pop(0) for _ in range(min(6 - num_cards, len(self.cards)))]
