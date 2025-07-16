@@ -43,6 +43,9 @@ class Table:
                 return False  # Can't beat this one
         return True  # All attack cards can be beaten
 
+    def num_beaten(self):
+        return sum(1 for status in self.table.values() if status[0])
+
     def beaten(self):
         return len(self.table) >= 6 or all(status[0] for status in self.table.values())
 

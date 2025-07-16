@@ -15,20 +15,25 @@ init python:
             card_img[key] = path
 
     def handle_card_click(index):
-        card = durak.get_hand("player")[index]
+        card = durak.player.hand[index]
+        print("Card clicked:", card)
 
         if durak.state == "player_attack":
             if durak.attack_card(card):
+                print(f"Player attacked with {card}")
                 durak.state = "ai_defend"
+                renpy.jump("durak_game_loop")
 
         elif durak.state == "player_defend":
             global selected_attack_card
-            if selected_attack_card and durak.defend_card(selected_attack_card, card):
+            if selected_attack_card and durak.defend_card(card, selected_attack_card):
+                print(f"Player defended against {selected_attack_card} with {card}")
                 selected_attack_card = None
-                if durak.all_cards_defended():
-                    durak.state = "end_turn"
+                durak.state = "ai_attack"
+            else:
+                selected_attack_card = None
 
-screen show_cards():
+screen durak():
 
     tag cardgame
     modal True
@@ -37,12 +42,14 @@ screen show_cards():
     add "bg.jpg" xpos 0 ypos 0 xysize (1920, 1080)
 
     timer .5 action SetVariable("next_turn", False)
+    if durak.state not in ["player_attack", "player_defend"]:
+         timer 5 action Jump("durak_game_loop")
 
     # Opponent hand
-    $ opp_total = len(opponent_hand)
+    $ opp_total = len(durak.opponent.hand)
     $ opp_total_width = CARD_WIDTH + (opp_total - 1) * CARD_SPACING
     $ opp_start_x = (1920 - opp_total_width) // 2 + 100
-    for i, card in enumerate(opponent_hand):
+    for i, card in enumerate(durak.opponent.hand):
         $ card_x = opp_start_x + i * CARD_SPACING - 100
         $ card_y = 20
 
@@ -53,15 +60,18 @@ screen show_cards():
                 xpos card_x
                 ypos card_y
 
-
     # Table cards
-    for i, (atk, (beaten, def_card)) in enumerate(table_cards.items()):
+    for i, (atk, (beaten, def_card)) in enumerate(durak.table.table.items()):
         $ atk_x = 350 + i * 200
         $ atk_y = 375
 
         if durak.state == "player_defend" and not beaten:
+            $ is_selected = selected_attack_card == atk
             imagebutton:
-                idle Transform(card_img[atk], xysize=(CARD_WIDTH, CARD_HEIGHT))
+                idle Transform(card_img[atk], xysize=(CARD_WIDTH, CARD_HEIGHT),
+                               yoffset=-20 if is_selected else 0,
+                               alpha=1.0 if is_selected else 0.9)
+                hover Transform(card_img[atk], xysize=(CARD_WIDTH, CARD_HEIGHT), yoffset=-20)
                 xpos atk_x
                 ypos atk_y
                 action SetVariable("selected_attack_card", atk)
@@ -72,49 +82,33 @@ screen show_cards():
 
         if def_card:
             add Transform(card_img[def_card], xysize=(CARD_WIDTH, CARD_HEIGHT)):
-                xpos 350 + i * 200
-                ypos 420
+                xpos atk_x
+                ypos atk_y + 120
 
     # Player hand
-    $ total_cards = len(player_hand)
+    $ total_cards = len(durak.player.hand)
     $ total_width = CARD_WIDTH + (total_cards - 1) * CARD_SPACING
     $ start_x = (1920 - total_width) // 2
-    for i, card in enumerate(player_hand):
 
-        $ offset = 0
+    for i, card in enumerate(durak.player.hand):
 
-        if hovered_card_index != -1:
-            if i == hovered_card_index:
-                $ offset = -80
-            elif abs(i - hovered_card_index) == 1:
-                $ offset = 20 if i > hovered_card_index else -20
-            else:
-                $ offset = 0
+        $ is_hovered = i == hovered_card_index
+        $ is_adjacent = abs(i - hovered_card_index) == 1
 
-        $ card_x = start_x + i * CARD_SPACING
-        $ card_y = 825
+        $ dx = 20 if is_adjacent and i > hovered_card_index else (-20 if is_adjacent and i < hovered_card_index else 0)
+        $ dy = -80 if is_hovered else 0
 
-        if next_turn:
-            imagebutton:
-                at draw_card(card_x, card_y)
-                idle Transform(card_img[card], xysize=(CARD_WIDTH, CARD_HEIGHT),
-                               xoffset=(offset if i != hovered_card_index else 0),
-                               yoffset=(offset if i == hovered_card_index else 0))
-                action Function(handle_card_click, i)
-                hovered SetVariable("hovered_card_index", i)
-                unhovered SetVariable("hovered_card_index", -1)
-        else:
-            imagebutton:
-                idle Transform(card_img[card], xysize=(CARD_WIDTH, CARD_HEIGHT),
-                               xoffset=(offset if i != hovered_card_index else 0),
-                               yoffset=(offset if i == hovered_card_index else 0))
-                xpos card_x
-                ypos card_y
-                action Function(handle_card_click, i)
-                hovered SetVariable("hovered_card_index", i)
-                unhovered SetVariable("hovered_card_index", -1)
+        $ card_x = start_x + i * CARD_SPACING + dx
+        $ card_y = 825 + dy
 
-
+        imagebutton:
+            idle Transform(card_img[card], xysize=(CARD_WIDTH, CARD_HEIGHT))
+            hover Transform(card_img[card], xysize=(CARD_WIDTH, CARD_HEIGHT))
+            xpos card_x
+            ypos card_y
+            action Function(handle_card_click, i)
+            hovered SetVariable("hovered_card_index", i)
+            unhovered SetVariable("hovered_card_index", -1)
 
     # Deck (face-down)
     if durak.deck.cards:
@@ -130,21 +124,26 @@ screen show_cards():
             xpos -50
             ypos 350
 
-    # Discard pile (show last discarded card)
-    if durak.deck.discard:
-        add Transform("cards/cover.png", xysize=(CARD_WIDTH, CARD_HEIGHT), rotate=90):
-            xpos 1500
-            ypos 350
-        add Transform("cards/cover.png", xysize=(CARD_WIDTH, CARD_HEIGHT), rotate=45):
-            xpos 1500
-            ypos 350
-        add Transform("cards/cover.png", xysize=(CARD_WIDTH, CARD_HEIGHT), rotate=135):
-            xpos 1500
-            ypos 350
+        text "[len(durak.deck.cards)]" xpos 55 ypos 455 size 60
 
+    $ rotate = 15
+    # Discard pile (show last discarded card)
+    for card in durak.deck.discard:
+        add Transform("cards/cover.png", xysize=(CARD_WIDTH, CARD_HEIGHT), rotate=rotate + 15):
+            xpos 1600
+            ypos 350
+        $ rotate += 15 if rotate < 360 else -345
 
     # State label
-    text "Phase: [cards_state]" xpos 20 ypos 20 size 30
+    text "Phase: [durak.state]" xpos 20 ypos 20 size 30
+
+    if durak.table and durak.state == "player_attack" or durak.state == "player_defend":
+        frame:
+            xpos 1500
+            ypos 950
+            has vbox
+            textbutton "End Turn":
+                action SetVariable("durak.state", "end_turn")
 
     # Show result if needed
     if durak.result:

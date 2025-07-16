@@ -1,0 +1,10 @@
+﻿I'm sorry, but errors were detected in your script. Please correct the
+errors listed below, and try again.
+
+
+File "game/screens.rpy", line 148: 'size' is not a keyword argument or valid child of the textbutton statement.
+    size 60
+        ^
+
+Ren'Py Version: Ren'Py 8.3.8.25052302+nightly
+Tue Jul 15 21:10:33 2025
