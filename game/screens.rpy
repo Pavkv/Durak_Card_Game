@@ -15,14 +15,13 @@ init python:
             card_img[key] = path
 
     def handle_card_click(index):
+        global confirm_attack, selected_attack_card_index
         card = durak.player.hand[index]
         print("Card clicked:", card)
 
         if durak.state == "player_attack":
-            if durak.attack_card(card):
-                print(f"Player attacked with {card}")
-                durak.state = "ai_defend"
-                renpy.jump("durak_game_loop")
+            selected_attack_card_index = index
+            confirm_attack = False
 
         elif durak.state == "player_defend":
             global selected_attack_card
@@ -32,6 +31,17 @@ init python:
                 durak.state = "ai_attack"
             else:
                 selected_attack_card = None
+
+    def confirm_selected_attack():
+        global confirm_attack, selected_attack_card_index
+        if confirm_attack and selected_attack_card_index != -1:
+            card = durak.player.hand[selected_attack_card_index]
+            if durak.attack_card(card):
+                print(f"Player attacked with {card}")
+                durak.state = "ai_defend"
+                selected_attack_card_index = -1
+                confirm_attack = False
+                renpy.jump("durak_game_loop")
 
 screen durak():
 
@@ -53,12 +63,9 @@ screen durak():
         $ card_x = opp_start_x + i * CARD_SPACING - 100
         $ card_y = 20
 
-        if next_turn:
-            add Transform("cards/cover.png", xysize=(CARD_WIDTH, CARD_HEIGHT)) at draw_card(card_x, card_y)
-        else:
-            add Transform("cards/cover.png", xysize=(CARD_WIDTH, CARD_HEIGHT)):
-                xpos card_x
-                ypos card_y
+        add Transform("cards/cover.png", xysize=(CARD_WIDTH, CARD_HEIGHT)):
+            xpos card_x
+            ypos card_y
 
     # Table cards
     for i, (atk, (beaten, def_card)) in enumerate(durak.table.table.items()):
@@ -89,13 +96,13 @@ screen durak():
     $ total_cards = len(durak.player.hand)
     $ total_width = CARD_WIDTH + (total_cards - 1) * CARD_SPACING
     $ start_x = (1920 - total_width) // 2
-
     for i, card in enumerate(durak.player.hand):
 
-        $ is_hovered = i == hovered_card_index
+        $ is_selected = (i == selected_attack_card_index)
+        $ is_hovered = (i == hovered_card_index) or is_selected
         $ is_adjacent = abs(i - hovered_card_index) == 1
 
-        $ dx = 20 if is_adjacent and i > hovered_card_index else (-20 if is_adjacent and i < hovered_card_index else 0)
+        $ dx = 20 if is_adjacent and not is_selected and i > hovered_card_index else (-20 if is_adjacent and not is_selected and i < hovered_card_index else 0)
         $ dy = -80 if is_hovered else 0
 
         $ card_x = start_x + i * CARD_SPACING + dx
@@ -108,7 +115,7 @@ screen durak():
             ypos card_y
             action Function(handle_card_click, i)
             hovered SetVariable("hovered_card_index", i)
-            unhovered SetVariable("hovered_card_index", -1)
+            unhovered If(i != selected_attack_card_index, SetVariable("hovered_card_index", -1))
 
     # Deck (face-down)
     if durak.deck.cards:
@@ -139,11 +146,19 @@ screen durak():
 
     if durak.table and durak.state == "player_attack" or durak.state == "player_defend":
         frame:
-            xpos 1500
-            ypos 950
+            xpos 960
+            ypos 775
             has vbox
             textbutton "End Turn":
                 action SetVariable("durak.state", "end_turn")
+
+    if durak.state == "player_attack" and selected_attack_card_index != -1:
+        frame:
+            xpos 775
+            ypos 775
+            has vbox
+            textbutton "Confirm Attack":
+                action [SetVariable("confirm_attack", True), Function(confirm_selected_attack)]
 
     # Show result if needed
     if durak.result:

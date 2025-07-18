@@ -12,9 +12,9 @@ class Player:
     def __len__(self):
         return len(self.hand)
 
-    def draw_from_deck(self, deck):
+    def draw_from_deck(self, deck, trump_suit=None):
         self.hand.extend(deck.deal(len(self.hand)))
-        self.sort_hand()
+        self.sort_hand(trump_suit)
 
     def lowest_trump_card(self, trump):
         trump_cards = [card for card in self.hand if card.suit == trump]
@@ -22,9 +22,10 @@ class Player:
             return None
         return min(trump_cards, key=lambda card: Card.rank_values[card.rank])
 
-    def sort_hand(self):
+    def sort_hand(self, trump_suit):
         def card_sort_key(card):
+            is_trump = (card.suit == trump_suit)
             rank_value = Card.rank_values[card.rank]
-            return rank_value
+            return is_trump, rank_value
 
         self.hand.sort(key=card_sort_key)

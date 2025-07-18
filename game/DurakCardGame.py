@@ -16,8 +16,8 @@ class DurakCardGame:
         self.opponent = Player("Opponent")
         self.result = None
 
-        self.player.draw_from_deck(self.deck)
-        self.opponent.draw_from_deck(self.deck)
+        self.player.draw_from_deck(self.deck, self.deck.trump_suit)
+        self.opponent.draw_from_deck(self.deck, self.deck.trump_suit)
 
         player_trump = self.player.lowest_trump_card(self.deck.trump_suit)
         opponent_trump = self.opponent.lowest_trump_card(self.deck.trump_suit)
@@ -89,7 +89,7 @@ class DurakCardGame:
         self.state = "player_attack" if self.current_turn == self.player else "ai_attack"
 
     def check_endgame(self):
-        if self.deck.cards or self.player.hand > 0 and self.opponent.hand > 0:
+        if self.deck.cards or len(self.player.hand) > 0 and len(self.opponent.hand) > 0:
             return
         player_cards = len(self.player.hand)
         opponent_cards = len(self.opponent.hand)

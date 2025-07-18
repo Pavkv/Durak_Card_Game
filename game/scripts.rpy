@@ -1,6 +1,7 @@
 init:
     default selected_card = None
     default selected_attack_card = None
+    default selected_attack_card_index = -1
     default attack_target = None
     default hovered_card_index = -1
     default selected_card_index = -1
@@ -43,10 +44,17 @@ label durak_game_loop:
         $ defend_success = durak.ai_defend()
         if defend_success:
             $ print("AI defended successfully.")
-            $ durak.state = "player_attack"
+            if not durak.can_attack(durak.player):
+                $ print("Cannot attack, no valid cards.")
+                $ durak.state = "end_turn"
+            else:
+                $ durak.state = "player_attack"
         else:
             $ print("AI could not defend, ending turn.")
-            $ durak.state = "end_turn"
+            if durak.can_attack(durak.player):
+                $ durak.state = "player_attack"
+            else:
+                $ durak.state = "end_turn"
     elif durak.state == "end_turn":
         $ print("Table before ending turn: ", durak.table)
         $ print("Player hand before ending turn: ", durak.player.hand)

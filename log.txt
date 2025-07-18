@@ -1,10 +1,10 @@
-2025-07-16 02:11:45 UTC
+2025-07-18 19:20:18 UTC
 Windows-10-10.0.26100
 Ren'Py 8.3.8.25052302+nightly
 
-Early init took 0.05s
-Loading error handling took 0.07s
-Loading script took 1.33s
+Early init took 0.07s
+Loading error handling took 0.09s
+Loading script took 1.60s
 Loading save slot metadata took 0.01s
 Loading persistent took 0.00s
 Running init code took 0.08s
@@ -20,7 +20,7 @@ Initial gc took 0.03s
 DPI scale factor: 1.000000
 nvdrs: Loaded, about to disable thread optimizations.
 nvdrs: Disabled thread optimizations.
-Creating interface object took 0.23s
+Creating interface object took 0.24s
 Cleaning stores took 0.00s
 Init translation took 0.00s
 Build styles took 0.00s

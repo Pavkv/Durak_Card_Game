@@ -47,7 +47,7 @@ class Table:
         return sum(1 for status in self.table.values() if status[0])
 
     def beaten(self):
-        return len(self.table) >= 6 or all(status[0] for status in self.table.values())
+        return all(status[0] for status in self.table.values())
 
     def clear(self):
         self.table.clear()
