@@ -51,8 +51,6 @@ label durak_game_loop:
                 $ durak.state = "player_defend"
         else:
             $ print("AI could not attack, ending turn.")
-            if durak.can_attack(durak.opponent):
-                $ durak.throw_ins()
             $ durak.state = "end_turn"
 
     elif durak.state == "ai_defend":
@@ -74,6 +72,11 @@ label durak_game_loop:
 
     elif durak.state == "end_turn":
         $ renpy.block_rollback()
+
+        if durak.current_turn == durak.opponent and durak.can_attack(durak.opponent):
+            $ print("Ai adding throw ins.")
+            $ durak.throw_ins()
+
         $ print("Table before ending turn: ", durak.table)
         $ print("Player hand before ending turn: ", durak.player.hand)
         $ print("Opponent hand before ending turn: ", durak.opponent.hand)

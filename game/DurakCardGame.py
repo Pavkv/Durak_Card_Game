@@ -33,8 +33,7 @@ class DurakCardGame:
         self.state = "player_attack" if self.current_turn == self.player else "ai_attack"
 
     def can_attack(self, attacker):
-        return not self.table or any(card.rank in self.table.ranks for card in attacker.hand) \
-            and len(self.table) < 6 and 6 - self.table.num_beaten() <= len(self.player.hand if attacker == self.player else self.opponent.hand)
+        return not self.table or any(card.rank in self.table.ranks for card in attacker.hand) and len(self.player.hand if attacker == self.player else self.opponent.hand) > 0
 
     def attack_card(self, card):
         if not self.can_attack(self.current_turn) or not self.table.append(card):

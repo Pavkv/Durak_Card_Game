@@ -5,7 +5,7 @@ init python:
 
     CARD_WIDTH, CARD_HEIGHT, CARD_SPACING = 157, 237, 118
     suits = {'uvao': 'C', '2ch': 'D', 'ussr': 'H', 'utan': 'S'}
-    ranks = {'6': '6', '7': '7', '8': '8', '9': '9', '10': '10', '11': 'J', '12': 'Q', '13': 'K', '1': 'A'}
+    ranks = {'2': '2', '3': '3', '4': '4', '5': '5', '6': '6', '7': '7', '8': '8', '9': '9', '10': '10', '11': 'J', '12': 'Q', '13': 'K', '1': 'A'}
     card_img = {Card(rankv, suitv): f"cards/{rankk}_{suitk}.png"
                 for suitk, suitv in suits.items()
                 for rankk, rankv in ranks.items()}
