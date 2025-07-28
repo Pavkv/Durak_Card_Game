@@ -14,11 +14,15 @@ class DurakCardGame:
         self.player = Player(player_name)
         self.ai = AI()
         self.opponent = Player("Opponent")
+        self.current_turn = None
+        self.state = None
         self.result = None
 
+    def draw_cards(self):
         self.player.draw_from_deck(self.deck, self.deck.trump_suit)
-        self.opponent.draw_from_deck(self.deck, self.deck.trump_suit)
+        self.opponent.draw_from_deck(self.deck)
 
+    def define_first_turn(self):
         player_trump = self.player.lowest_trump_card(self.deck.trump_suit)
         opponent_trump = self.opponent.lowest_trump_card(self.deck.trump_suit)
         if player_trump and opponent_trump:
@@ -70,21 +74,21 @@ class DurakCardGame:
             if self.table.append(card):
                 self.opponent.hand.remove(card)
 
-    def end_turn(self):
+    def take_or_discard_cards(self):
         if not self.table.beaten():
             receiver = self.player if not self.current_turn == self.player else self.opponent
             receiver.hand.extend(self.table.keys())
             receiver.hand.extend([v[1] for v in self.table.values() if v[1]])
-
         else:
             self.deck.discard.extend(self.table.keys())
             self.deck.discard.extend([v[1] for v in self.table.values() if v[1]])
             self.current_turn = self.opponent if self.current_turn == self.player else self.player
+
+    def end_turn(self):
         self.ai.remember_table(self.table)
         self.ai.seen_cards.update(self.deck.discard)
         self.table.clear()
-        self.player.draw_from_deck(self.deck)
-        self.opponent.draw_from_deck(self.deck)
+
         self.check_endgame()
         self.state = "player_attack" if self.current_turn == self.player else "ai_attack"
 
