@@ -1,7 +1,7 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
 While running game code:
-  File "game/scripts.rpy", line 155, in script
+  File "game/scripts.rpy", line 146, in script
     call screen durak
   File "renpy/common/000statements.rpy", line 671, in execute_call_screen
     store._return = renpy.call_screen(name, *args, **kwargs)
@@ -16,7 +16,7 @@ AttributeError: 'Layout' object has no attribute 'yesno_prompt'
 -- Full Traceback ------------------------------------------------------------
 
 Full traceback:
-  File "game/scripts.rpy", line 155, in script
+  File "game/scripts.rpy", line 146, in script
     call screen durak
   File "C:\Users\Admin\Desktop\renpy-8.1.3-sdk\renpy\ast.py", line 1987, in execute
     self.call("execute")
@@ -51,4 +51,4 @@ AttributeError: 'Layout' object has no attribute 'yesno_prompt'
 Windows-10-10.0.26100 AMD64
 Ren'Py 8.3.8.25052302+nightly
  
-Mon Jul 28 18:12:19 2025
+Mon Jul 28 21:47:31 2025

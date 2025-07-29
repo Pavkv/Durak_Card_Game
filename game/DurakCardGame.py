@@ -33,7 +33,8 @@ class DurakCardGame:
         self.state = "player_attack" if self.current_turn == self.player else "ai_attack"
 
     def can_attack(self, attacker):
-        return not self.table or any(card.rank in self.table.ranks for card in attacker.hand) and len(self.player.hand if attacker == self.player else self.opponent.hand) > 0
+        defender = self.player if attacker == self.opponent else self.opponent
+        return not self.table or (any(card.rank in self.table.ranks for card in attacker.hand) and len(defender.hand) > 0)
 
     def attack_card(self, card):
         if not self.can_attack(self.current_turn) or not self.table.append(card):
@@ -97,7 +98,7 @@ class DurakCardGame:
         player_cards = len(self.player.hand)
         opponent_cards = len(self.opponent.hand)
         if player_cards == 0 and player_cards == opponent_cards and self.table.beaten():
-            self.result = f"{self.opponent.name if self.current_turn == self.opponent else self.player.name} is Durak"
+            self.result = "Draw! Both players are Durak."
         elif player_cards < opponent_cards:
             self.result = f"{self.player.name} wins! {self.opponent.name} is Durak."
         else:

@@ -43,7 +43,7 @@ screen durak_base_ui():
             has vbox
             text "[durak_state_tl[durak.state]]":
                 color "#ffffff"
-                size 12
+                size 10
                 xpos 7
                 ypos 7
 

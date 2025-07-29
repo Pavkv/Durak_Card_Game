@@ -1,132 +1,21 @@
-2025-07-28 22:08:07 UTC
+2025-07-29 01:47:22 UTC
 Windows-10-10.0.26100
 Ren'Py 8.3.8.25052302+nightly
 
-Early init took 0.06s
-Loading error handling took 0.04s
-Loading script took 0.66s
+Early init took 0.05s
+Loading error handling took 0.02s
+Loading script took 0.08s
 Loading save slot metadata took 0.01s
 Loading persistent took 0.00s
-Running init code took 0.06s
+Running init code took 0.03s
 Loading analysis data took 0.01s
 Analyze and compile ATL took 0.00s
 Reloading save slot metadata took 0.01s
 Index archives took 0.00s
-Backing up script files to 'C:\\Users\\Admin\\AppData\\Roaming/RenPy/backups\\Durak':
-Dump and make backups took 0.04s
+Dump and make backups took 0.03s
 Cleaning cache took 0.00s
 Making clean stores took 0.00s
 Initial gc took 0.02s
-DPI scale factor: 1.000000
-nvdrs: Loaded, about to disable thread optimizations.
-nvdrs: Disabled thread optimizations.
-Creating interface object took 0.24s
-Cleaning stores took 0.00s
-Init translation took 0.00s
-Build styles took 0.00s
-Load screen analysis took 0.00s
-Analyze screens took 0.01s
-Save screen analysis took 0.01s
-Prepare screens took 0.04s
-Save pyanalysis. took 0.00s
-Save bytecode. took 0.02s
-Running _start took 0.00s
-Interface start took 0.31s
-
-Initializing gl2 renderer:
-primary display bounds: (0, 0, 3440, 1440)
-swap interval: 1 frames
-Windowed mode.
-Vendor: "b'NVIDIA Corporation'"
-Renderer: b'NVIDIA GeForce RTX 3080/PCIe/SSE2'
-Version: b'4.6.0 NVIDIA 576.88'
-Display Info: None
-Screen sizes: virtual=(1920, 1080) physical=(3440, 1369) drawable=(3440, 1369)
-Maximum texture size: 4096x4096
-Screen sizes: virtual=(1920, 1080) physical=(3440, 1369) drawable=(3440, 1369)
-Maximum texture size: 4096x4096
-
-Full traceback:
-  File "game/scripts.rpy", line 36, in script
-    call screen deal_cards
-  File "C:\Users\Admin\Desktop\renpy-8.1.3-sdk\renpy\ast.py", line 1987, in execute
-    self.call("execute")
-  File "C:\Users\Admin\Desktop\renpy-8.1.3-sdk\renpy\ast.py", line 1966, in call
-    return renpy.statements.call(method, parsed, *args, **kwargs)
-  File "C:\Users\Admin\Desktop\renpy-8.1.3-sdk\renpy\statements.py", line 374, in call
-    return method(parsed, *args, **kwargs)
-  File "renpy/common/000statements.rpy", line 671, in execute_call_screen
-    store._return = renpy.call_screen(name, *args, **kwargs)
-  File "C:\Users\Admin\Desktop\renpy-8.1.3-sdk\renpy\exports\statementexports.py", line 345, in call_screen
-    rv = renpy.ui.interact(mouse="screen", type="screen", roll_forward=roll_forward)
-  File "C:\Users\Admin\Desktop\renpy-8.1.3-sdk\renpy\ui.py", line 301, in interact
-    rv = renpy.game.interface.interact(roll_forward=roll_forward, **kwargs)
-  File "C:\Users\Admin\Desktop\renpy-8.1.3-sdk\renpy\display\core.py", line 2218, in interact
-    repeat, rv = self.interact_core(preloads=preloads, trans_pause=trans_pause, pause=pause, pause_start=pause_start, pause_modal=pause_modal, **kwargs) # type: ignore
-  File "C:\Users\Admin\Desktop\renpy-8.1.3-sdk\renpy\display\core.py", line 2748, in interact_core
-    root_widget.visit_all(lambda d : d.per_interact())
-  File "C:\Users\Admin\Desktop\renpy-8.1.3-sdk\renpy\display\displayable.py", line 434, in visit_all
-    d.visit_all(callback, seen)
-  File "C:\Users\Admin\Desktop\renpy-8.1.3-sdk\renpy\display\displayable.py", line 434, in visit_all
-    d.visit_all(callback, seen)
-  File "C:\Users\Admin\Desktop\renpy-8.1.3-sdk\renpy\display\displayable.py", line 434, in visit_all
-    d.visit_all(callback, seen)
-  File "C:\Users\Admin\Desktop\renpy-8.1.3-sdk\renpy\display\screen.py", line 480, in visit_all
-    callback(self)
-  File "C:\Users\Admin\Desktop\renpy-8.1.3-sdk\renpy\display\core.py", line 2748, in <lambda>
-    root_widget.visit_all(lambda d : d.per_interact())
-  File "C:\Users\Admin\Desktop\renpy-8.1.3-sdk\renpy\display\screen.py", line 491, in per_interact
-    self.update()
-  File "C:\Users\Admin\Desktop\renpy-8.1.3-sdk\renpy\display\screen.py", line 700, in update
-    self.screen.function(**self.scope)
-  File "game/screens.rpy", line 1, in execute
-    screen durak_base_ui():
-  File "game/screens.rpy", line 1, in execute
-    screen durak_base_ui():
-  File "game/screens.rpy", line 77, in execute
-    if durak.deck.cards:
-  File "game/screens.rpy", line 79, in execute
-    if trump:
-  File "game/screens.rpy", line 80, in execute
-    add Transform(card_img[trump], xysize=(CARD_WIDTH, CARD_HEIGHT), rotate=90):
-  File "game/screens.rpy", line 80, in <module>
-    add Transform(card_img[trump], xysize=(CARD_WIDTH, CARD_HEIGHT), rotate=90):
-KeyError: 2D
-
-While running game code:
-  File "game/scripts.rpy", line 36, in script
-    call screen deal_cards
-  File "renpy/common/000statements.rpy", line 671, in execute_call_screen
-    store._return = renpy.call_screen(name, *args, **kwargs)
-  File "game/screens.rpy", line 1, in execute
-    screen durak_base_ui():
-  File "game/screens.rpy", line 1, in execute
-    screen durak_base_ui():
-  File "game/screens.rpy", line 77, in execute
-    if durak.deck.cards:
-  File "game/screens.rpy", line 79, in execute
-    if trump:
-  File "game/screens.rpy", line 80, in execute
-    add Transform(card_img[trump], xysize=(CARD_WIDTH, CARD_HEIGHT), rotate=90):
-  File "game/screens.rpy", line 80, in <module>
-    add Transform(card_img[trump], xysize=(CARD_WIDTH, CARD_HEIGHT), rotate=90):
-KeyError: 2D
-Resetting cache.
-Early init took 54.76s
-Loading error handling took 0.02s
-Loading script took 0.09s
-Loading save slot metadata took 0.01s
-Loading persistent took 0.00s
-Running init code took 0.02s
-Loading analysis data took 0.02s
-Analyze and compile ATL took 0.00s
-Reloading save slot metadata took 0.01s
-Index archives took 0.00s
-Backing up script files to 'C:\\Users\\Admin\\AppData\\Roaming/RenPy/backups\\Durak':
-Dump and make backups took 0.04s
-Cleaning cache took 0.00s
-Making clean stores took 0.00s
-Initial gc took 0.04s
 DPI scale factor: 1.000000
 nvdrs: Loaded, about to disable thread optimizations.
 nvdrs: Disabled thread optimizations.
@@ -134,14 +23,14 @@ Creating interface object took 0.22s
 Cleaning stores took 0.00s
 Init translation took 0.00s
 Build styles took 0.00s
-Load screen analysis took 0.00s
-Analyze screens took 0.01s
-Save screen analysis took 0.01s
+Load screen analysis took 0.02s
+Analyze screens took 0.00s
+Save screen analysis took 0.00s
 Prepare screens took 0.04s
 Save pyanalysis. took 0.00s
-Save bytecode. took 0.01s
+Save bytecode. took 0.00s
 Running _start took 0.00s
-Interface start took 0.16s
+Interface start took 0.18s
 
 Initializing gl2 renderer:
 primary display bounds: (0, 0, 3440, 1440)
@@ -155,146 +44,9 @@ Screen sizes: virtual=(1920, 1080) physical=(3440, 1369) drawable=(3440, 1369)
 Maximum texture size: 4096x4096
 Screen sizes: virtual=(1920, 1080) physical=(3440, 1369) drawable=(3440, 1369)
 Maximum texture size: 4096x4096
-AI attacked successfully.
-AI could not attack, ending turn.
 
 Full traceback:
-  File "game/scripts.rpy", line 76, in script
-    if self.current_turn == durak.opponent and durak.can_attack(durak.opponent):
-  File "C:\Users\Admin\Desktop\renpy-8.1.3-sdk\renpy\ast.py", line 1856, in execute
-    if renpy.python.py_eval(condition):
-  File "C:\Users\Admin\Desktop\renpy-8.1.3-sdk\renpy\python.py", line 1218, in py_eval
-    return py_eval_bytecode(code, globals, locals)
-  File "C:\Users\Admin\Desktop\renpy-8.1.3-sdk\renpy\python.py", line 1211, in py_eval_bytecode
-    return eval(bytecode, globals, locals)
-  File "game/scripts.rpy", line 76, in <module>
-    if self.current_turn == durak.opponent and durak.can_attack(durak.opponent):
-NameError: name 'self' is not defined
-
-While running game code:
-  File "game/scripts.rpy", line 76, in script
-    if self.current_turn == durak.opponent and durak.can_attack(durak.opponent):
-  File "game/scripts.rpy", line 76, in <module>
-    if self.current_turn == durak.opponent and durak.can_attack(durak.opponent):
-NameError: name 'self' is not defined
-Resetting cache.
-Early init took 98.33s
-Loading error handling took 0.01s
-Loading script took 0.09s
-Loading save slot metadata took 0.01s
-Loading persistent took 0.00s
-Running init code took 0.01s
-Loading analysis data took 0.01s
-Analyze and compile ATL took 0.00s
-Reloading save slot metadata took 0.01s
-Index archives took 0.00s
-Backing up script files to 'C:\\Users\\Admin\\AppData\\Roaming/RenPy/backups\\Durak':
-Dump and make backups took 0.04s
-Cleaning cache took 0.00s
-Making clean stores took 0.00s
-Initial gc took 0.03s
-DPI scale factor: 1.000000
-nvdrs: Loaded, about to disable thread optimizations.
-nvdrs: Disabled thread optimizations.
-Creating interface object took 0.21s
-Cleaning stores took 0.00s
-Init translation took 0.00s
-Build styles took 0.00s
-Load screen analysis took 0.00s
-Analyze screens took 0.01s
-Save screen analysis took 0.01s
-Prepare screens took 0.04s
-Save pyanalysis. took 0.00s
-Save bytecode. took 0.01s
-Running _start took 0.00s
-Interface start took 0.17s
-
-Initializing gl2 renderer:
-primary display bounds: (0, 0, 3440, 1440)
-swap interval: 1 frames
-Windowed mode.
-Vendor: "b'NVIDIA Corporation'"
-Renderer: b'NVIDIA GeForce RTX 3080/PCIe/SSE2'
-Version: b'4.6.0 NVIDIA 576.88'
-Display Info: None
-Screen sizes: virtual=(1920, 1080) physical=(3440, 1369) drawable=(3440, 1369)
-Maximum texture size: 4096x4096
-Screen sizes: virtual=(1920, 1080) physical=(3440, 1369) drawable=(3440, 1369)
-Maximum texture size: 4096x4096
-Table before ending turn:  Table: 2S
-Player hand before ending turn:  [3S, 4S, 5C, JS, QC, AS]
-Opponent hand before ending turn:  [4D, 8C, 10C, QS, QD]
-Discarding table cards []
-Player hand after ending turn:  [3S, 4S, 5C, JS, QC, AS, 2S]
-Opponent hand after ending turn:  [4D, 8C, 10C, QS, QD]
-Player hand after drawing:  [2S, 3S, 4S, 5C, JS, QC, AS]
-Opponent hand after drawing:  [4D, 5D, 8C, 10C, QS, QD]
-AI attacked successfully.
-AI could not attack, ending turn.
-Table before ending turn:  Table: 8C
-Player hand before ending turn:  [2S, 3S, 4S, 5C, JS, QC, AS]
-Opponent hand before ending turn:  [4D, 5D, 10C, QS, QD]
-Discarding table cards []
-Player hand after ending turn:  [2S, 3S, 4S, 5C, JS, QC, AS, 8C]
-Opponent hand after ending turn:  [4D, 5D, 10C, QS, QD]
-Player hand after drawing:  [2S, 3S, 4S, 5C, 8C, JS, QC, AS]
-Opponent hand after drawing:  [4D, 5D, 9D, 10C, QS, QD]
-AI attacked successfully.
-Card clicked: QC
-Player defended against 10C with QC
-AI attacked successfully.
-Card clicked: AS
-Player defended against QS with AS
-AI attacked successfully.
-AI could not attack, ending turn.
-Table before ending turn:  Table: 10C, QS, QD
-Player hand before ending turn:  [2S, 3S, 4S, 5C, 8C, JS]
-Opponent hand before ending turn:  [4D, 5D, 9D]
-Discarding table cards []
-Player hand after ending turn:  [2S, 3S, 4S, 5C, 8C, JS, 10C, QS, QD, QC, AS]
-Opponent hand after ending turn:  [4D, 5D, 9D]
-Player hand after drawing:  [2S, 3S, 4S, 5C, 8C, 10C, JS, QS, QC, AS, QD]
-Opponent hand after drawing:  [4D, 5D, 7C, 9D, KC, AD]
-AI attacked successfully.
-Card clicked: 8C
-Player defended against 7C with 8C
-AI could not attack, ending turn.
-Table before ending turn:  Table: 7C
-Player hand before ending turn:  [2S, 3S, 4S, 5C, 10C, JS, QS, QC, AS, QD]
-Opponent hand before ending turn:  [4D, 5D, 9D, KC, AD]
-Discarding table cards [7C, 8C]
-Player hand after ending turn:  [2S, 3S, 4S, 5C, 10C, JS, QS, QC, AS, QD]
-Opponent hand after ending turn:  [4D, 5D, 9D, KC, AD]
-Player hand after drawing:  [2S, 3S, 4S, 5C, 10C, JS, QS, QC, AS, QD]
-Opponent hand after drawing:  [4D, 5D, 9D, KC, KS, AD]
-Card clicked: QS
-Player attacked with QS
-AI defended successfully.
-Card clicked: QC
-Player attacked with QC
-AI defended successfully.
-Table before ending turn:  Table: QS, QC
-Player hand before ending turn:  [2S, 3S, 4S, 5C, 10C, JS, AS, QD]
-Opponent hand before ending turn:  [4D, 5D, 9D, AD]
-Discarding table cards [7C, 8C, QS, QC, KS, KC]
-Player hand after ending turn:  [2S, 3S, 4S, 5C, 10C, JS, AS, QD]
-Opponent hand after ending turn:  [4D, 5D, 9D, AD]
-Player hand after drawing:  [2S, 3S, 4S, 5C, 10C, JS, AS, QD]
-Opponent hand after drawing:  [4D, 5D, 7H, 9D, JD, AD]
-AI attacked successfully.
-AI could not attack, ending turn.
-Table before ending turn:  Table: 7H
-Player hand before ending turn:  [2S, 3S, 4S, 5C, 10C, JS, AS, QD]
-Opponent hand before ending turn:  [4D, 5D, 9D, JD, AD]
-Discarding table cards [7C, 8C, QS, QC, KS, KC]
-Player hand after ending turn:  [2S, 3S, 4S, 5C, 10C, JS, AS, QD, 7H]
-Opponent hand after ending turn:  [4D, 5D, 9D, JD, AD]
-Player hand after drawing:  [2S, 3S, 4S, 5C, 7H, 10C, JS, AS, QD]
-Opponent hand after drawing:  [4D, 5D, 6S, 9D, JD, AD]
-AI attacked successfully.
-
-Full traceback:
-  File "game/scripts.rpy", line 155, in script
+  File "game/scripts.rpy", line 146, in script
     call screen durak
   File "C:\Users\Admin\Desktop\renpy-8.1.3-sdk\renpy\ast.py", line 1987, in execute
     self.call("execute")
@@ -327,7 +79,7 @@ Full traceback:
 AttributeError: 'Layout' object has no attribute 'yesno_prompt'
 
 While running game code:
-  File "game/scripts.rpy", line 155, in script
+  File "game/scripts.rpy", line 146, in script
     call screen durak
   File "renpy/common/000statements.rpy", line 671, in execute_call_screen
     store._return = renpy.call_screen(name, *args, **kwargs)

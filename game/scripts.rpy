@@ -32,18 +32,18 @@ label start:
 label durak_game_loop:
 
     if is_dealing:
-        $ renpy.block_rollback()
+#         $ renpy.block_rollback()
         call screen deal_cards
         $ deal_cards = False
         $ is_dealing = False
 
     if durak.result:
-        $ renpy.block_rollback()
+#         $ renpy.block_rollback()
         $ print("Game Over: ", durak.result)
         $ durak.state = "results"
 
     if durak.state == "ai_attack":
-        $ renpy.block_rollback()
+#         $ renpy.block_rollback()
         if durak.can_attack(durak.opponent):
             $ attack_success = durak.ai_attack()
             if attack_success:
@@ -54,24 +54,16 @@ label durak_game_loop:
             $ durak.state = "end_turn"
 
     elif durak.state == "ai_defend":
-        $ renpy.block_rollback()
+#         $ renpy.block_rollback()
         $ defend_success = durak.ai_defend()
         if defend_success:
             $ print("AI defended successfully.")
         else:
             $ print("AI could not defend, ending turn.")
-            if durak.can_attack(durak.player):
-                $ durak.state = "player_attack"
-            else:
-                $ durak.state = "end_turn"
-        if not durak.can_attack(durak.player):
-            $ print("Cannot attack, no valid cards.")
-            $ durak.state = "end_turn"
-        else:
-            $ durak.state = "player_attack"
+        $ durak.state = "player_attack"
 
     elif durak.state == "end_turn":
-        $ renpy.block_rollback()
+#         $ renpy.block_rollback()
 
         if durak.current_turn == durak.opponent and durak.can_attack(durak.opponent):
             $ print("Ai adding throw ins.")
@@ -121,7 +113,6 @@ label durak_game_loop:
         call screen table_card_animation
         $ is_table_animating = False
 
-        # Now apply the changes
         $ durak.take_or_discard_cards()
         $ durak.end_turn()
 
@@ -147,8 +138,8 @@ label durak_game_loop:
             $ next_turn = True
 
 
-    elif durak.state == "results":
-        $ renpy.block_rollback()
+    if durak.state == "results":
+#         $ renpy.block_rollback()
         "Game Over: [durak.result]"
         return
 
