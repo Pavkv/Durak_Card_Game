@@ -5,7 +5,7 @@ init python:
 
     CARD_WIDTH, CARD_HEIGHT, CARD_SPACING = 157, 237, 118
     suits = {'uvao': 'C', '2ch': 'D', 'ussr': 'H', 'utan': 'S'}
-    ranks = {'2': '2', '3': '3', '4': '4', '5': '5', '6': '6', '7': '7', '8': '8', '9': '9', '10': '10', '11': 'J', '12': 'Q', '13': 'K', '1': 'A'}
+    ranks = {'6': '6', '7': '7', '8': '8', '9': '9', '10': '10', '11': 'J', '12': 'Q', '13': 'K', '1': 'A'} # '2': '2', '3': '3', '4': '4', '5': '5',
     card_img = {Card(rankv, suitv): f"cards/{rankk}_{suitk}.png"
                 for suitk, suitv in suits.items()
                 for rankk, rankv in ranks.items()}
@@ -28,28 +28,39 @@ init python:
 
     def handle_card_click(index):
         """Handles card click events for player actions."""
-        global confirm_attack, selected_attack_card_index, selected_attack_card
+        global confirm_attack, selected_attack_card_indexes, selected_attack_card
         card = durak.player.hand[index]
         print("Card clicked:", card)
+
         if durak.state == "player_attack":
-            selected_attack_card_index = index
-            confirm_attack = False
+            if index in selected_attack_card_indexes:
+                selected_attack_card_indexes.remove(index)
+            else:
+                selected_attack_card_indexes.add(index)
+            confirm_attack = len(selected_attack_card_indexes) > 0
+
         elif durak.state == "player_defend" and selected_attack_card:
             if durak.defend_card(card, selected_attack_card):
                 print(f"Player defended against {selected_attack_card} with {card}")
                 selected_attack_card = None
                 durak.state = "ai_attack"
             else:
+                print(f"Failed to defend with {card}")
                 selected_attack_card = None
 
     def confirm_selected_attack():
-        """Confirms the selected attack card."""
-        global confirm_attack, selected_attack_card_index
-        if confirm_attack and selected_attack_card_index != -1:
-            card = durak.player.hand[selected_attack_card_index]
-            if durak.attack_card(card):
-                print(f"Player attacked with {card}")
+        """Confirms all selected attack cards."""
+        global confirm_attack, selected_attack_card_indexes
+
+        if confirm_attack and selected_attack_card_indexes:
+            cards = [durak.player.hand[i] for i in sorted(selected_attack_card_indexes)]
+            if durak.attack_cards(cards):
+                print(f"Player attacked with: {', '.join(str(c) for c in cards)}")
                 durak.state = "ai_defend"
-                selected_attack_card_index = -1
+                selected_attack_card_indexes.clear()
                 confirm_attack = False
                 renpy.jump("durak_game_loop")
+            else:
+                print("Invalid attack. Resetting selection.")
+                selected_attack_card_indexes.clear()
+                confirm_attack = False

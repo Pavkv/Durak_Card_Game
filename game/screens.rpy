@@ -6,134 +6,143 @@ screen durak_base_ui():
 
     add "bg.jpg" xpos 0 ypos 0 xysize (1920, 1080)
 
-    # Opponent avatar
-    frame:
-        background None
-        xpos 1750
-        ypos 20
-        has vbox
-        add "opponent.png" xysize (150, 150)
+    if durak.result:
         frame:
-            background "textbox_1.png" xysize (150, 35) yoffset 15
+            xpos 600
+            ypos 400
             has vbox
-            text "Алиса" color "#ffffff" size 30 xpos 25 ypos 3
-
-    # Game Info Box
-    $ show_end_turn = durak.table and durak.state in ["player_attack", "player_defend"]
-    $ show_confirm_attack = durak.state == "player_attack" and selected_attack_card_index != -1
-    if show_end_turn and show_confirm_attack:
-        $ y1 = 50
-        $ y2 = 60
+            text "[durak.result]" size 40
+            textbutton "Return to menu":
+                action Return()
     else:
-        $ y1 = y2 = 50
+        # Opponent avatar
+        frame:
+            background None
+            xpos 1750
+            ypos 20
+            has vbox
+            add "opponent.png" xysize (150, 150)
+            frame:
+                background "textbox_1.png" xysize (150, 35) yoffset 15
+                has vbox
+                text "Алиса" color "#ffffff" size 30 xpos 25 ypos 3
 
-    frame:
-        background None
-        xpos 1750
-        ypos 823
-        has vbox
+        # Game Info Box
+        $ show_end_turn = durak.table and durak.state in ["player_attack", "player_defend"]
+        $ show_confirm_attack = durak.state == "player_attack" and len(selected_attack_card_indexes) > 0
+        if show_end_turn and show_confirm_attack:
+            $ y1 = 50
+            $ y2 = 60
+        else:
+            $ y1 = y2 = 50
 
         frame:
-            background "textbox.png" yoffset 10
+            background None
+            xpos 1750
+            ypos 823
             has vbox
-            text "Фаза Игры:" color "#ffffff" size 20 xpos 7
 
-        frame:
-            background "textbox_2.png" yoffset 20
-            has vbox
-            text "[durak_state_tl[durak.state]]":
-                color "#ffffff"
-                size 10
-                xpos 7
-                ypos 7
-
-        if show_end_turn:
             frame:
-                background "textbox_2.png"
-                ypos y1
+                background "textbox.png" yoffset 10
                 has vbox
-                textbutton [" Бито" if durak.state == "player_attack" else "Взять"]:
-                    text_size 25
-                    xpos 37
-                    action If(
-                        durak.state == "player_attack",
-                        SetVariable("durak.state", "end_turn"),
-                        SetVariable("durak.state", "ai_attack")
-                    )
+                text "Фаза Игры:" color "#ffffff" size 20 xpos 7
 
-        if show_confirm_attack:
             frame:
-                background "textbox_1.png"
-                ypos y2
+                background "textbox_2.png" yoffset 20
                 has vbox
-                textbutton "Подтвердить\n      атаку":
-                    text_size 15 xpos 22 ypos 1
-                    action [SetVariable("confirm_attack", True), Function(confirm_selected_attack)]
+                text "[durak_state_tl[durak.state]]":
+                    color "#ffffff"
+                    size 10
+                    xpos 7
+                    ypos 7
 
-    # Deck and Trump Card
-    $ deck_text = str(len(durak.deck.cards)) if len(durak.deck.cards) > 0 else card_suits[durak.deck.trump_suit]
-    $ deck_xpos = 55 if len(durak.deck.cards) > 9 else 73
+            if show_end_turn:
+                frame:
+                    background "textbox_2.png"
+                    ypos y1
+                    has vbox
+                    textbutton [" Бито" if durak.state == "player_attack" else "Взять"]:
+                        text_size 25
+                        xpos 37
+                        action [If(
+                            durak.state == "player_attack",
+                            [SetVariable("durak.state", "end_turn"), SetVariable("selected_attack_card_index", -1)],
+                            SetVariable("durak.state", "ai_attack")
+                        ), SetVariable("confirm_take", True)]
 
-    if durak.deck.cards:
-        $ trump = durak.deck.trump_card
-        if trump:
-            add Transform(card_img[trump], xysize=(CARD_WIDTH, CARD_HEIGHT), rotate=90):
-                xpos CARD_WIDTH // 2 - 55
+            if show_confirm_attack:
+                frame:
+                    background "textbox_1.png"
+                    ypos y2
+                    has vbox
+                    textbutton "Подтвердить\n      атаку":
+                        text_size 15 xpos 22 ypos 1
+                        action [SetVariable("confirm_attack", True), Function(confirm_selected_attack)]
+
+        # Deck and Trump Card
+        $ deck_text = str(len(durak.deck.cards)) if len(durak.deck.cards) > 0 else card_suits[durak.deck.trump_suit]
+        $ deck_xpos = 55 if len(durak.deck.cards) > 9 else 73
+
+        if durak.deck.cards:
+            $ trump = durak.deck.trump_card
+            if trump:
+                add Transform(card_img[trump], xysize=(CARD_WIDTH, CARD_HEIGHT), rotate=90):
+                    xpos CARD_WIDTH // 2 - 55
+                    ypos 350
+
+            add Transform("cards/cover.png", xysize=(CARD_WIDTH, CARD_HEIGHT), rotate=0):
+                xpos -50
                 ypos 350
 
-        add Transform("cards/cover.png", xysize=(CARD_WIDTH, CARD_HEIGHT), rotate=0):
-            xpos -50
-            ypos 350
+            text deck_text:
+                xpos deck_xpos
+                ypos 455
+                size 60
+        else:
+            text card_suits[durak.deck.trump_suit]:
+                xpos deck_xpos
+                ypos 455
+                size 75
 
-        text deck_text:
-            xpos deck_xpos
-            ypos 455
-            size 60
-    else:
-        text card_suits[durak.deck.trump_suit]:
-            xpos deck_xpos
-            ypos 455
-            size 75
+        # Discard pile
+        $ rotate = 0
+        for card in durak.deck.discard:
+            add Transform("cards/cover.png", xysize=(CARD_WIDTH, CARD_HEIGHT), rotate=rotate + 15):
+                xpos 1600
+                ypos 350
+            $ rotate += 15 if rotate < 360 else -360
 
-    # Discard pile
-    $ rotate = 0
-    for card in durak.deck.discard:
-        add Transform("cards/cover.png", xysize=(CARD_WIDTH, CARD_HEIGHT), rotate=rotate + 15):
-            xpos 1600
-            ypos 350
-        $ rotate += 15 if rotate < 360 else -360
+        if not deal_cards:
+            # Opponent hand layout
+            for i, card in enumerate(durak.opponent.hand):
+                $ card_x = opponent_card_layout[i]["x"]
+                $ card_y = opponent_card_layout[i]["y"]
 
-    if not deal_cards:
-        # Opponent hand layout
-        for i, card in enumerate(durak.opponent.hand):
-            $ card_x = opponent_card_layout[i]["x"]
-            $ card_y = opponent_card_layout[i]["y"]
+                add Transform("cards/cover.png", xysize=(CARD_WIDTH, CARD_HEIGHT)):
+                    xpos card_x
+                    ypos card_y
 
-            add Transform("cards/cover.png", xysize=(CARD_WIDTH, CARD_HEIGHT)):
-                xpos card_x
-                ypos card_y
+            # Player hand
+            for i, card in enumerate(durak.player.hand):
+                $ card_x = player_card_layout[i]["x"]
+                $ card_y = player_card_layout[i]["y"]
 
-        # Player hand
-        for i, card in enumerate(durak.player.hand):
-            $ card_x = player_card_layout[i]["x"]
-            $ card_y = player_card_layout[i]["y"]
+                $ is_hovered = (i == hovered_card_index)
+                $ is_adjacent = abs(i - hovered_card_index) == 1
+                $ is_selected = (i in selected_attack_card_indexes)
 
-            $ is_hovered = (i == hovered_card_index)
-            $ is_adjacent = abs(i - hovered_card_index) == 1
-            $ is_selected = (i == selected_attack_card_index)
+                $ x_shift = 20 if i == hovered_card_index + 1 else (-20 if i == hovered_card_index - 1 else 0)
+                $ y_shift = -80 if is_hovered or is_selected else 0
 
-            $ x_shift = 20 if i == hovered_card_index + 1 else (-20 if i == hovered_card_index - 1 else 0)
-            $ y_shift = -80 if is_hovered or is_selected else 0
-
-            imagebutton:
-                idle Transform(card_img[card], xysize=(CARD_WIDTH, CARD_HEIGHT))
-                hover Transform(card_img[card], xysize=(CARD_WIDTH, CARD_HEIGHT))
-                xpos card_x
-                ypos card_y
-                at hover_offset(y=y_shift, x=x_shift)
-                action Function(handle_card_click, i)
-                hovered If(hovered_card_index != i, SetVariable("hovered_card_index", i))
-                unhovered If(hovered_card_index == i, SetVariable("hovered_card_index", -1))
+                imagebutton:
+                    idle Transform(card_img[card], xysize=(CARD_WIDTH, CARD_HEIGHT))
+                    hover Transform(card_img[card], xysize=(CARD_WIDTH, CARD_HEIGHT))
+                    xpos card_x
+                    ypos card_y
+                    at hover_offset(y=y_shift, x=x_shift)
+                    action Function(handle_card_click, i)
+                    hovered If(hovered_card_index != i, SetVariable("hovered_card_index", i))
+                    unhovered If(hovered_card_index == i, SetVariable("hovered_card_index", -1))
 
 screen deal_cards():
 
@@ -233,13 +242,3 @@ screen durak():
             add Transform(card_img[def_card], xysize=(CARD_WIDTH, CARD_HEIGHT)):
                 xpos atk_x
                 ypos atk_y + 120
-
-    # Show result if needed
-    if durak.result:
-        frame:
-            xpos 600
-            ypos 400
-            has vbox
-            text "[durak.result]" size 40
-            textbutton "Return to menu":
-                action Return()

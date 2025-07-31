@@ -2,9 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/scripts.rpy", line 29: expected 'name' not found.
-    show screen durak onlayer
-                             ^
+File "game/ini.rpy", line 9: expected statement.
+    confirm_attack = False
+                   ^
 
 Ren'Py Version: Ren'Py 8.3.8.25052302+nightly
-Mon Jul 28 15:55:58 2025
+Tue Jul 29 18:56:54 2025

@@ -1,10 +1,8 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
 While running game code:
-  File "game/scripts.rpy", line 146, in script
-    call screen durak
-  File "renpy/common/000statements.rpy", line 671, in execute_call_screen
-    store._return = renpy.call_screen(name, *args, **kwargs)
+  File "game/scripts.rpy", line 2, in script
+    "Welcome to Durak!"
   File "renpy/common/00action_menu.rpy", line 271, in __call__
     layout.yesno_screen(layout.QUIT, Quit(False))
   File "renpy/common/00layout.rpy", line 516, in yesno_screen
@@ -16,18 +14,20 @@ AttributeError: 'Layout' object has no attribute 'yesno_prompt'
 -- Full Traceback ------------------------------------------------------------
 
 Full traceback:
-  File "game/scripts.rpy", line 146, in script
-    call screen durak
-  File "C:\Users\Admin\Desktop\renpy-8.1.3-sdk\renpy\ast.py", line 1987, in execute
-    self.call("execute")
-  File "C:\Users\Admin\Desktop\renpy-8.1.3-sdk\renpy\ast.py", line 1966, in call
-    return renpy.statements.call(method, parsed, *args, **kwargs)
-  File "C:\Users\Admin\Desktop\renpy-8.1.3-sdk\renpy\statements.py", line 374, in call
-    return method(parsed, *args, **kwargs)
-  File "renpy/common/000statements.rpy", line 671, in execute_call_screen
-    store._return = renpy.call_screen(name, *args, **kwargs)
-  File "C:\Users\Admin\Desktop\renpy-8.1.3-sdk\renpy\exports\statementexports.py", line 345, in call_screen
-    rv = renpy.ui.interact(mouse="screen", type="screen", roll_forward=roll_forward)
+  File "game/scripts.rpy", line 2, in script
+    "Welcome to Durak!"
+  File "C:\Users\Admin\Desktop\renpy-8.1.3-sdk\renpy\ast.py", line 2586, in execute
+    Say.execute(self)
+  File "C:\Users\Admin\Desktop\renpy-8.1.3-sdk\renpy\ast.py", line 623, in execute
+    renpy.exports.say(who, what, *args, **kwargs)
+  File "C:\Users\Admin\Desktop\renpy-8.1.3-sdk\renpy\exports\sayexports.py", line 132, in say
+    who(what, *args, **kwargs)
+  File "C:\Users\Admin\Desktop\renpy-8.1.3-sdk\renpy\character.py", line 1471, in __call__
+    self.do_display(who, what, cb_args=self.cb_args, dtt=dtt, **display_args)
+  File "C:\Users\Admin\Desktop\renpy-8.1.3-sdk\renpy\character.py", line 1117, in do_display
+    display_say(who,
+  File "C:\Users\Admin\Desktop\renpy-8.1.3-sdk\renpy\character.py", line 814, in display_say
+    rv = renpy.ui.interact(mouse='say', type=type, roll_forward=roll_forward)
   File "C:\Users\Admin\Desktop\renpy-8.1.3-sdk\renpy\ui.py", line 301, in interact
     rv = renpy.game.interface.interact(roll_forward=roll_forward, **kwargs)
   File "C:\Users\Admin\Desktop\renpy-8.1.3-sdk\renpy\display\core.py", line 2218, in interact
@@ -51,4 +51,4 @@ AttributeError: 'Layout' object has no attribute 'yesno_prompt'
 Windows-10-10.0.26100 AMD64
 Ren'Py 8.3.8.25052302+nightly
  
-Mon Jul 28 21:47:31 2025
+Wed Jul 30 21:02:46 2025

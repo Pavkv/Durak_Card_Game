@@ -55,29 +55,41 @@ class AI:
 
         return throw_ins
 
-    def attack(self, hand, table, trump_suit):
-        table_ranks = table.ranks
+    def choose_attack_cards(self, hand, table, trump_suit, defender_hand_size):
         has_trump_left = self.estimate_player_has_trumps(trump_suit)
+        table_ranks = table.ranks
+        table_size = len(table)
 
+        # Sort all hand cards (non-trumps first, lowest rank)
         hand_sorted = sorted(hand, key=lambda c: (c.suit == trump_suit, Card.rank_values[c.rank]))
 
-        if len(table) == 0:
-            if has_trump_left:
-                for card in hand_sorted:
-                    if card.suit != trump_suit:
-                        return card
-            return hand_sorted[0]
+        attack_cards = []
 
-        playable = [card for card in hand_sorted if card.rank in table_ranks]
+        if table_size == 0:
+            # First attack: play the lowest card
+            first = None
+            for card in hand_sorted:
+                if has_trump_left and card.suit != trump_suit:
+                    first = card
+                    break
+            if not first:
+                first = hand_sorted[0]
+            attack_cards.append(first)
 
-        if playable:
-            if has_trump_left:
-                for card in playable:
-                    if card.suit != trump_suit:
-                        return card
-            return playable[0]
+            # Look for other cards with the same rank
+            same_rank_cards = [c for c in hand_sorted if c != first and c.rank == first.rank]
+            for card in same_rank_cards:
+                if len(attack_cards) < defender_hand_size:
+                    attack_cards.append(card)
 
-        return None
+        else:
+            # Follow-up: only cards that match ranks on the table
+            follow_ups = [c for c in hand_sorted if c.rank in table_ranks]
+            for card in follow_ups:
+                if len(attack_cards) < defender_hand_size:
+                    attack_cards.append(card)
+
+        return attack_cards
 
     def defense(self, hand, attack_card, trump_suit):
         has_trump_left = self.estimate_player_has_trumps(trump_suit)

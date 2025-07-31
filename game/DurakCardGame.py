@@ -36,10 +36,19 @@ class DurakCardGame:
         defender = self.player if attacker == self.opponent else self.opponent
         return not self.table or (any(card.rank in self.table.ranks for card in attacker.hand) and len(defender.hand) > 0)
 
-    def attack_card(self, card):
-        if not self.can_attack(self.current_turn) or not self.table.append(card):
+    def attack_cards(self, cards):
+        if not self.can_attack(self.current_turn):
             return False
-        self.current_turn.hand.remove(card)
+        for card in cards:
+            if card not in self.current_turn.hand or not self.table.append(card):
+                # Rollback: remove any already added cards from table
+                for played_card in cards:
+                    if played_card in self.table.table:
+                        del self.table.table[played_card]
+                        self.table.ranks.discard(played_card.rank)
+                return False
+        for card in cards:
+            self.current_turn.hand.remove(card)
         return True
 
     def defend_card(self, defend_card, attack_card):
@@ -50,11 +59,23 @@ class DurakCardGame:
         return True
 
     def ai_attack(self):
-        card = self.ai.attack(self.opponent.hand, self.table, self.deck.trump_suit)
-        if not card or not self.table.append(card):
+        cards = self.ai.choose_attack_cards(
+            self.opponent.hand,
+            self.table,
+            self.deck.trump_suit,
+            len(self.player.hand)
+        )
+
+        if not cards:
             return False
-        self.opponent.hand.remove(card)
-        return True
+
+        played = 0
+        for card in cards:
+            if card in self.opponent.hand and self.table.append(card):
+                self.opponent.hand.remove(card)
+                played += 1
+
+        return played > 0
 
     def ai_defend(self):
         for attack_card, (beaten, _) in self.table.table.items():

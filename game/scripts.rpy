@@ -50,8 +50,13 @@ label durak_game_loop:
                 $ print("AI attacked successfully.")
                 $ durak.state = "player_defend"
         else:
-            $ print("AI could not attack, ending turn.")
-            $ durak.state = "end_turn"
+            if not durak.table.beaten() and not confirm_take:
+                $ print("AI could not attack, player must defend or take.")
+                $ durak.state = "player_defend"
+            else:
+                $ print("AI could not attack, ending turn.")
+                $ confirm_take = False
+                $ durak.state = "end_turn"
 
     elif durak.state == "ai_defend":
 #         $ renpy.block_rollback()

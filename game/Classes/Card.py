@@ -1,7 +1,7 @@
 class Card:
     suits = ['C', 'D', 'H', 'S'] # C for Clubs(Крести/Трефы), D for Diamonds(Бубны), H for Hearts(Черви), S for Spades(Пики)
-    #
-    ranks = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'] # J for Jack(Валет), Q for Queen(Дама), K for King(Король), A for Ace(Туз)
+    # '2', '3', '4', '5',
+    ranks = ['6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'] # J for Jack(Валет), Q for Queen(Дама), K for King(Король), A for Ace(Туз)
     rank_values = {rank: i for i, rank in enumerate(ranks)}
 
     def __init__(self, rank, suit):

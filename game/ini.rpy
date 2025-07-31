@@ -3,9 +3,11 @@ init:
     default selected_card = None
     default selected_attack_card = None
     default attack_target = None
-    default selected_attack_card_index = -1
-    default selected_card_index = -1
+    default selected_attack_card_indexes = set()
+    default selected_card_indexes = set()
     default hovered_card_index = -1
+    default confirm_attack = False
+    default confirm_take = False
 
     # Turn and animation state
     default deal_cards = True
@@ -35,10 +37,10 @@ init:
         "results": "Игра окончена"
     }
     default card_suits = {
-        "C": "♣️",
-        "D": "♦️",
-        "H": "♥️",
-        "S": "♠️"
+        "C": "К",
+        "D": "Б",
+        "H": "Ч",
+        "S": "П"
     }
 
     # Card transforms
