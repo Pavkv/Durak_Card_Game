@@ -1,13 +1,20 @@
 label start:
-    "Welcome to Durak!"
+    $ player_name = renpy.input("Введите ваше имя", length=20)
+    $ opponent_name = "Противник"
+    $ cards_bg = "images/bg/bg_14.jpg"
+    $ in_game = False
+    $ base_card_img_src = "cards"
     python:
-        durak = DurakCardGame("Player1")
+        durak = DurakCardGame(player_name, opponent_name)
+        base_cover_img_src = base_card_img_src + "/cover.png"
+        durak.opponent.avatar = durak_avatar
         durak.draw_cards()
         compute_hand_layout()
         durak.define_first_turn()
 
         dealt_cards = []
         is_dealing = True
+        deal_cards = True
 
         delay = 0.0
         for i in range(len(durak.player.hand)):
@@ -33,9 +40,10 @@ label durak_game_loop:
 
     if is_dealing:
 #         $ renpy.block_rollback()
-        call screen deal_cards
-        $ deal_cards = False
         $ is_dealing = False
+        call screen deal_cards
+    else:
+        $ deal_cards = False
 
     if durak.result:
 #         $ renpy.block_rollback()
@@ -78,11 +86,12 @@ label durak_game_loop:
         $ print("Player hand before ending turn: ", durak.player.hand)
         $ print("Opponent hand before ending turn: ", durak.opponent.hand)
 
-        # Animate table cards
-        $ table_animations = []
-        $ is_table_animating = True
+        # Make sure old animation is gone
+        hide screen table_card_animation
 
+        # Build the new animation list
         python:
+            table_animations = []
             delay = 0.0
             for i, (atk, (beaten, def_card)) in enumerate(durak.table.table.items()):
                 src_x = 350 + i * 200
@@ -115,7 +124,8 @@ label durak_game_loop:
                         })
                         delay += 0.1
 
-        call screen table_card_animation
+        # Show the fresh animation
+        show screen table_card_animation
         $ is_table_animating = False
 
         $ durak.take_or_discard_cards()
@@ -141,12 +151,11 @@ label durak_game_loop:
             $ new_opponent_len = len(durak.opponent.hand)
 
             $ next_turn = True
-
+            $ confirm_take = False
 
     if durak.state == "results":
-#         $ renpy.block_rollback()
-        "Game Over: [durak.result]"
-        return
+#       $ renpy.block_rollback()
+        jump expression durak_results[durak.result]
 
     call screen durak
     jump durak_game_loop

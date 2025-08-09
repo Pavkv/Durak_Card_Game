@@ -2,9 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/ini.rpy", line 9: expected statement.
-    confirm_attack = False
-                   ^
+File "game/screens.rpy", line 62: u'else' is not a keyword argument or valid child for the vbox statement.
+    else:
+        ^
 
-Ren'Py Version: Ren'Py 8.3.8.25052302+nightly
-Tue Jul 29 18:56:54 2025
+Ren'Py Version: Ren'Py 7.4.11.2266
+Tue Aug  5 20:17:23 2025

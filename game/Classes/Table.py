@@ -7,7 +7,7 @@ class Table:
         self.ranks = set()
 
     def __str__(self):
-        return f"Table: {', '.join(str(card) for card in self.table)}"
+        return "Table: {}".format(", ".join(str(card) for card in self.table))
 
     def __repr__(self):
         return self.__str__()

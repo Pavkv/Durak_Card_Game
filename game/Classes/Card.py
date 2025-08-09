@@ -9,7 +9,7 @@ class Card:
         self.suit = suit
 
     def __str__(self):
-        return f"{self.rank}{self.suit}"
+        return "{}{}".format(self.rank, self.suit)
 
     def __repr__(self):
         return str(self)

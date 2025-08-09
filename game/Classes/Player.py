@@ -7,7 +7,11 @@ class Player:
         self.hand = []
 
     def __str__(self):
-        return f"Player {self.name} has {len(self.hand)} cards: {', '.join(str(card) for card in self.hand)}"
+        return "Player {} has {} cards: {}".format(
+            self.name,
+            len(self.hand),
+            ", ".join(str(card) for card in self.hand)
+        )
 
     def __len__(self):
         return len(self.hand)

@@ -1,4 +1,15 @@
 init:
+    # init
+    default player_name = None
+    default opponent_name = None
+    default base_card_img_src = None
+    default base_cover_img_src = None
+    default opponent = None
+    default cards_bg = None
+    default in_game = True
+    default durak_results = {}
+    default durak_avatar = None
+
     # Card selection and layout state
     default selected_card = None
     default selected_attack_card = None
@@ -64,3 +75,12 @@ init:
         ypos y1
         pause delay
         linear 0.4 xpos x2 ypos y2 alpha 0
+
+    # Styles
+    style card_game_button:
+        background RoundRect("#b2b3b4", 10)
+        hover_background RoundRect("#757e87", 10)
+        xsize 150
+        padding (5, 5)
+        text_align 0.5
+        align (0.5, 0.5)

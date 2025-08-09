@@ -1,3 +1,4 @@
+# coding=utf-8
 import random
 
 from Classes.Card import Card
@@ -8,19 +9,24 @@ from Classes.AI import AI
 
 
 class DurakCardGame:
-    def __init__(self, player_name):
+    def __init__(self, player_name="Вы", opponent_name="Противник"):
         self.deck = Deck()
         self.table = Table()
         self.player = Player(player_name)
         self.ai = AI()
-        self.opponent = Player("Opponent")
+        self.opponent = Player(opponent_name)
         self.current_turn = None
         self.state = None
         self.result = None
 
     def draw_cards(self):
-        self.player.draw_from_deck(self.deck, self.deck.trump_suit)
-        self.opponent.draw_from_deck(self.deck)
+        if self.current_turn == self.player:
+            self.opponent.draw_from_deck(self.deck)
+            self.player.draw_from_deck(self.deck, self.deck.trump_suit)
+        else:
+            self.player.draw_from_deck(self.deck, self.deck.trump_suit)
+            self.opponent.draw_from_deck(self.deck)
+
 
     def define_first_turn(self):
         player_trump = self.player.lowest_trump_card(self.deck.trump_suit)
@@ -119,8 +125,8 @@ class DurakCardGame:
         player_cards = len(self.player.hand)
         opponent_cards = len(self.opponent.hand)
         if player_cards == 0 and player_cards == opponent_cards and self.table.beaten():
-            self.result = "Draw! Both players are Durak."
+            self.result = "draw"
         elif player_cards < opponent_cards:
-            self.result = f"{self.player.name} wins! {self.opponent.name} is Durak."
+            self.result = self.player.name
         else:
-            self.result = f"{self.opponent.name} wins! {self.player.name} is Durak."
+            self.result = self.opponent.name

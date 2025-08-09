@@ -1,398 +1,94 @@
-2025-07-31 00:57:14 UTC
+Fri Aug  8 23:13:35 2025
 Windows-10-10.0.26100
-Ren'Py 8.3.8.25052302+nightly
+Ren'Py 7.4.11.2266
+ 
 
-Early init took 0.05s
-Loading error handling took 0.02s
-Loading script took 0.14s
-Loading save slot metadata took 0.01s
+Bootstrap to the start of init.init took 0.05s
+Early init took 0.00s
+Loader init took 0.02s
+Loading error handling took 0.01s
+Loading script took 0.07s
+Loading save slot metadata. took 0.01s
 Loading persistent took 0.00s
+Importing _renpysteam: ImportError('No module named _renpysteam',)
 Running init code took 0.04s
 Loading analysis data took 0.01s
 Analyze and compile ATL took 0.00s
-Reloading save slot metadata took 0.01s
 Index archives took 0.00s
-Dump and make backups took 0.04s
+Dump and make backups. took 0.04s
 Cleaning cache took 0.00s
 Making clean stores took 0.00s
-Initial gc took 0.02s
+Initial gc. took 0.01s
 DPI scale factor: 1.000000
 nvdrs: Loaded, about to disable thread optimizations.
 nvdrs: Disabled thread optimizations.
-Creating interface object took 0.21s
+Creating interface object took 0.23s
 Cleaning stores took 0.00s
-Init translation took 0.00s
+Init translation took 0.02s
 Build styles took 0.00s
-Load screen analysis took 0.02s
+Load screen analysis took 0.01s
 Analyze screens took 0.00s
 Save screen analysis took 0.00s
-Prepare screens took 0.04s
+Prepare screens took 0.03s
 Save pyanalysis. took 0.00s
-Save bytecode. took 0.02s
+Save bytecode. took 0.00s
 Running _start took 0.00s
-Interface start took 0.19s
+Performance test:
+Interface start took 0.08s
 
 Initializing gl2 renderer:
 primary display bounds: (0, 0, 3440, 1440)
 swap interval: 1 frames
 Windowed mode.
-Vendor: "b'NVIDIA Corporation'"
-Renderer: b'NVIDIA GeForce RTX 3080/PCIe/SSE2'
-Version: b'4.6.0 NVIDIA 576.88'
+Vendor: 'NVIDIA Corporation'
+Renderer: 'NVIDIA GeForce RTX 3080/PCIe/SSE2'
+Version: '4.6.0 NVIDIA 576.88'
 Display Info: None
-Screen sizes: virtual=(1920, 1080) physical=(3440, 1369) drawable=(3440, 1369)
+Screen sizes: virtual=(1920, 1080) physical=(1920, 1080) drawable=(1920, 1080)
 Maximum texture size: 4096x4096
-Screen sizes: virtual=(1920, 1080) physical=(3440, 1369) drawable=(3440, 1369)
-Maximum texture size: 4096x4096
-AI attacked successfully.
-Card clicked: 9S
-Player defended against 6S with 9S
-AI could not attack, ending turn.
-Table before ending turn:  Table: 6S
-Player hand before ending turn:  [8C, 9H, 10S, KS, KC]
-Opponent hand before ending turn:  [10H, JC, QD, QH, AD]
-Discarding table cards [6S, 9S]
-Player hand after ending turn:  [8C, 9H, 10S, KS, KC]
-Opponent hand after ending turn:  [10H, JC, QD, QH, AD]
-Player hand after drawing:  [7C, 8C, 9H, 10S, KS, KC]
-Opponent hand after drawing:  [10H, JC, JH, QD, QH, AD]
-Card clicked: 7C
-Player attacked with: 7C
-AI defended successfully.
-Table before ending turn:  Table: 7C
-Player hand before ending turn:  [8C, 9H, 10S, KS, KC]
-Opponent hand before ending turn:  [10H, JH, QD, QH, AD]
-Discarding table cards [6S, 9S, 7C, JC]
-Player hand after ending turn:  [8C, 9H, 10S, KS, KC]
-Opponent hand after ending turn:  [10H, JH, QD, QH, AD]
-Player hand after drawing:  [8C, 8H, 9H, 10S, KS, KC]
-Opponent hand after drawing:  [10H, JH, QD, QH, AD, AS]
-Card clicked: 8C
-AI attacked successfully.
-AI could not attack, ending turn.
-Table before ending turn:  Table: 10H
-Player hand before ending turn:  [8C, 8H, 9H, 10S, KS, KC]
-Opponent hand before ending turn:  [JH, QD, QH, AD, AS]
-Discarding table cards [6S, 9S, 7C, JC]
-Player hand after ending turn:  [8C, 8H, 9H, 10S, KS, KC, 10H]
-Opponent hand after ending turn:  [JH, QD, QH, AD, AS]
-Player hand after drawing:  [8C, 8H, 9H, 10S, 10H, KS, KC]
-Opponent hand after drawing:  [10C, JH, QD, QH, AD, AS]
-AI attacked successfully.
-Card clicked: KC
-Player defended against 10C with KC
-AI could not attack, ending turn.
-Table before ending turn:  Table: 10C
-Player hand before ending turn:  [8C, 8H, 9H, 10S, 10H, KS]
-Opponent hand before ending turn:  [JH, QD, QH, AD, AS]
-Discarding table cards [6S, 9S, 7C, JC, 10C, KC]
-Player hand after ending turn:  [8C, 8H, 9H, 10S, 10H, KS]
-Opponent hand after ending turn:  [JH, QD, QH, AD, AS]
-Player hand after drawing:  [8C, 8H, 9H, 10S, 10H, KS]
-Opponent hand after drawing:  [7H, JH, QD, QH, AD, AS]
-Card clicked: 8C
-Card clicked: 8H
-Player attacked with: 8C, 8H
-AI defended successfully.
-Table before ending turn:  Table: 8C, 8H
-Player hand before ending turn:  [9H, 10S, 10H, KS]
-Opponent hand before ending turn:  [7H, QH, AD, AS]
-Discarding table cards [6S, 9S, 7C, JC, 10C, KC, 8C, 8H, QD, JH]
-Player hand after ending turn:  [9H, 10S, 10H, KS]
-Opponent hand after ending turn:  [7H, QH, AD, AS]
-Player hand after drawing:  [9H, 10S, 10H, QS, KS, KD]
-Opponent hand after drawing:  [7H, 8S, 8D, QH, AD, AS]
-Card clicked: 9H
-AI attacked successfully.
-Card clicked: 9H
-Player defended against 7H with 9H
-AI could not attack, ending turn.
-Table before ending turn:  Table: 7H
-Player hand before ending turn:  [10S, 10H, QS, KS, KD]
-Opponent hand before ending turn:  [8S, 8D, QH, AD, AS]
-Discarding table cards [6S, 9S, 7C, JC, 10C, KC, 8C, 8H, QD, JH, 7H, 9H]
-Player hand after ending turn:  [10S, 10H, QS, KS, KD]
-Opponent hand after ending turn:  [8S, 8D, QH, AD, AS]
-Player hand after drawing:  [10S, 10H, QS, KS, KH, KD]
-Opponent hand after drawing:  [8S, 8D, QH, AD, AS, AH]
-Card clicked: 10S
-Card clicked: 10H
-Player attacked with: 10S, 10H
-AI defended successfully.
-Card clicked: QS
-Player attacked with: QS
-AI defended successfully.
-Table before ending turn:  Table: 10S, 10H, QS
-Player hand before ending turn:  [KS, KH, KD]
-Opponent hand before ending turn:  [8S, AD, AH]
-Discarding table cards [6S, 9S, 7C, JC, 10C, KC, 8C, 8H, QD, JH, 7H, 9H, 10S, 10H, QS, AS, QH, 8D]
-Player hand after ending turn:  [KS, KH, KD]
-Opponent hand after ending turn:  [8S, AD, AH]
-Player hand after drawing:  [9C, QC, KS, KH, AC, KD]
-Opponent hand after drawing:  [6C, 8S, 9D, JS, AD, AH]
-AI attacked successfully.
-Card clicked: 9C
-Player defended against 6C with 9C
-AI attacked successfully.
-AI could not attack, ending turn.
-Table before ending turn:  Table: 6C, 9D
-Player hand before ending turn:  [QC, KS, KH, AC, KD]
-Opponent hand before ending turn:  [8S, JS, AD, AH]
-Discarding table cards [6S, 9S, 7C, JC, 10C, KC, 8C, 8H, QD, JH, 7H, 9H, 10S, 10H, QS, AS, QH, 8D]
-Player hand after ending turn:  [QC, KS, KH, AC, KD, 6C, 9D, 9C]
-Opponent hand after ending turn:  [8S, JS, AD, AH]
-Player hand after drawing:  [6C, 9C, QC, KS, KH, AC, 9D, KD]
-Opponent hand after drawing:  [7S, 8S, JS, JD, AD, AH]
-AI attacked successfully.
-Card clicked: KS
-Card clicked: KS
-Player defended against 7S with KS
-AI could not attack, ending turn.
-Table before ending turn:  Table: 7S
-Player hand before ending turn:  [6C, 9C, QC, KH, AC, 9D, KD]
-Opponent hand before ending turn:  [8S, JS, JD, AD, AH]
-Discarding table cards [6S, 9S, 7C, JC, 10C, KC, 8C, 8H, QD, JH, 7H, 9H, 10S, 10H, QS, AS, QH, 8D, 7S, KS]
-Player hand after ending turn:  [6C, 9C, QC, KH, AC, 9D, KD]
-Opponent hand after ending turn:  [8S, JS, JD, AD, AH]
-Player hand after drawing:  [6C, 9C, QC, KH, AC, 9D, KD]
-Opponent hand after drawing:  [6H, 8S, JS, JD, AD, AH]
-Card clicked: 6C
-Player attacked with: 6C
-AI defended successfully.
-Table before ending turn:  Table: 6C
-Player hand before ending turn:  [9C, QC, KH, AC, 9D, KD]
-Opponent hand before ending turn:  [6H, 8S, JS, AD, AH]
-Discarding table cards [6S, 9S, 7C, JC, 10C, KC, 8C, 8H, QD, JH, 7H, 9H, 10S, 10H, QS, AS, QH, 8D, 7S, KS, 6C, JD]
-Player hand after ending turn:  [9C, QC, KH, AC, 9D, KD]
-Opponent hand after ending turn:  [6H, 8S, JS, AD, AH]
-Player hand after drawing:  [9C, QC, KH, AC, 9D, KD]
-Opponent hand after drawing:  [6H, 7D, 8S, JS, AD, AH]
-AI attacked successfully.
-Card clicked: KH
-Player defended against 6H with KH
-AI could not attack, ending turn.
-Table before ending turn:  Table: 6H
-Player hand before ending turn:  [9C, QC, AC, 9D, KD]
-Opponent hand before ending turn:  [7D, 8S, JS, AD, AH]
-Discarding table cards [6S, 9S, 7C, JC, 10C, KC, 8C, 8H, QD, JH, 7H, 9H, 10S, 10H, QS, AS, QH, 8D, 7S, KS, 6C, JD, 6H, KH]
-Player hand after ending turn:  [9C, QC, AC, 9D, KD]
-Opponent hand after ending turn:  [7D, 8S, JS, AD, AH]
-Player hand after drawing:  [9C, QC, AC, 9D, 10D, KD]
-Opponent hand after drawing:  [6D, 7D, 8S, JS, AD, AH]
-Card clicked: 9C
-Player attacked with: 9C
-AI defended successfully.
-Card clicked: 9D
-Player attacked with: 9D
-AI defended successfully.
-Card clicked: AC
-Player attacked with: AC
-AI defended successfully.
-Table before ending turn:  Table: 9C, 9D, AC
-Player hand before ending turn:  [QC, 10D, KD]
-Opponent hand before ending turn:  [8S, JS, AH]
-Discarding table cards [6S, 9S, 7C, JC, 10C, KC, 8C, 8H, QD, JH, 7H, 9H, 10S, 10H, QS, AS, QH, 8D, 7S, KS, 6C, JD, 6H, KH, 9C, 9D, AC, 6D, AD, 7D]
-Player hand after ending turn:  [QC, 10D, KD]
-Opponent hand after ending turn:  [8S, JS, AH]
-Player hand after drawing:  [QC, 10D, KD]
-Opponent hand after drawing:  [8S, JS, AH]
-AI attacked successfully.
-Card clicked: 10D
-Player defended against 8S with 10D
-AI could not attack, ending turn.
-Table before ending turn:  Table: 8S
-Player hand before ending turn:  [QC, KD]
-Opponent hand before ending turn:  [JS, AH]
-Discarding table cards [6S, 9S, 7C, JC, 10C, KC, 8C, 8H, QD, JH, 7H, 9H, 10S, 10H, QS, AS, QH, 8D, 7S, KS, 6C, JD, 6H, KH, 9C, 9D, AC, 6D, AD, 7D, 8S, 10D]
-Player hand after ending turn:  [QC, KD]
-Opponent hand after ending turn:  [JS, AH]
-Player hand after drawing:  [QC, KD]
-Opponent hand after drawing:  [JS, AH]
-Card clicked: QC
-Player attacked with: QC
-AI could not defend, ending turn.
-Table before ending turn:  Table: QC
-Player hand before ending turn:  [KD]
-Opponent hand before ending turn:  [JS, AH]
-Discarding table cards [6S, 9S, 7C, JC, 10C, KC, 8C, 8H, QD, JH, 7H, 9H, 10S, 10H, QS, AS, QH, 8D, 7S, KS, 6C, JD, 6H, KH, 9C, 9D, AC, 6D, AD, 7D, 8S, 10D]
-Player hand after ending turn:  [KD]
-Opponent hand after ending turn:  [JS, AH, QC]
-Player hand after drawing:  [KD]
-Opponent hand after drawing:  [JS, QC, AH]
-Card clicked: KD
-Player attacked with: KD
-AI could not defend, ending turn.
-Table before ending turn:  Table: KD
-Player hand before ending turn:  []
-Opponent hand before ending turn:  [JS, QC, AH]
-Discarding table cards [6S, 9S, 7C, JC, 10C, KC, 8C, 8H, QD, JH, 7H, 9H, 10S, 10H, QS, AS, QH, 8D, 7S, KS, 6C, JD, 6H, KH, 9C, 9D, AC, 6D, AD, 7D, 8S, 10D]
-Player hand after ending turn:  []
-Opponent hand after ending turn:  [JS, QC, AH, KD]
 
 Full traceback:
-  File "game/scripts.rpy", line 148, in script
-    "Game Over: [durak.result]"
-  File "C:\Users\Admin\Desktop\renpy-8.1.3-sdk\renpy\ast.py", line 2586, in execute
-    Say.execute(self)
-  File "C:\Users\Admin\Desktop\renpy-8.1.3-sdk\renpy\ast.py", line 623, in execute
-    renpy.exports.say(who, what, *args, **kwargs)
-  File "C:\Users\Admin\Desktop\renpy-8.1.3-sdk\renpy\exports\sayexports.py", line 132, in say
-    who(what, *args, **kwargs)
-  File "C:\Users\Admin\Desktop\renpy-8.1.3-sdk\renpy\character.py", line 1471, in __call__
-    self.do_display(who, what, cb_args=self.cb_args, dtt=dtt, **display_args)
-  File "C:\Users\Admin\Desktop\renpy-8.1.3-sdk\renpy\character.py", line 1117, in do_display
-    display_say(who,
-  File "C:\Users\Admin\Desktop\renpy-8.1.3-sdk\renpy\character.py", line 814, in display_say
-    rv = renpy.ui.interact(mouse='say', type=type, roll_forward=roll_forward)
-  File "C:\Users\Admin\Desktop\renpy-8.1.3-sdk\renpy\ui.py", line 301, in interact
+  File "game/scripts.rpy", line 160, in script
+    call screen durak
+  File "renpy/ast.py", line 2015, in execute
+    self.call("execute")
+  File "renpy/ast.py", line 2003, in call
+    return renpy.statements.call(method, parsed, *args, **kwargs)
+  File "renpy/statements.py", line 278, in call
+    return method(parsed, *args, **kwargs)
+  File "renpy/common/000statements.rpy", line 569, in execute_call_screen
+    store._return = renpy.call_screen(name, *args, **kwargs)
+  File "renpy/exports.py", line 3136, in call_screen
+    rv = renpy.ui.interact(mouse="screen", type="screen", roll_forward=roll_forward)
+  File "renpy/ui.py", line 298, in interact
     rv = renpy.game.interface.interact(roll_forward=roll_forward, **kwargs)
-  File "C:\Users\Admin\Desktop\renpy-8.1.3-sdk\renpy\display\core.py", line 2218, in interact
-    repeat, rv = self.interact_core(preloads=preloads, trans_pause=trans_pause, pause=pause, pause_start=pause_start, pause_modal=pause_modal, **kwargs) # type: ignore
-  File "C:\Users\Admin\Desktop\renpy-8.1.3-sdk\renpy\display\core.py", line 2748, in interact_core
-    root_widget.visit_all(lambda d : d.per_interact())
-  File "C:\Users\Admin\Desktop\renpy-8.1.3-sdk\renpy\display\displayable.py", line 434, in visit_all
-    d.visit_all(callback, seen)
-  File "C:\Users\Admin\Desktop\renpy-8.1.3-sdk\renpy\display\displayable.py", line 434, in visit_all
-    d.visit_all(callback, seen)
-  File "C:\Users\Admin\Desktop\renpy-8.1.3-sdk\renpy\display\displayable.py", line 434, in visit_all
-    d.visit_all(callback, seen)
-  File "C:\Users\Admin\Desktop\renpy-8.1.3-sdk\renpy\display\screen.py", line 480, in visit_all
-    callback(self)
-  File "C:\Users\Admin\Desktop\renpy-8.1.3-sdk\renpy\display\core.py", line 2748, in <lambda>
-    root_widget.visit_all(lambda d : d.per_interact())
-  File "C:\Users\Admin\Desktop\renpy-8.1.3-sdk\renpy\display\screen.py", line 491, in per_interact
-    self.update()
-  File "C:\Users\Admin\Desktop\renpy-8.1.3-sdk\renpy\display\screen.py", line 700, in update
-    self.screen.function(**self.scope)
-  File "game/screens.rpy", line 1, in execute
-    screen durak_base_ui():
-  File "game/screens.rpy", line 1, in execute
-    screen durak_base_ui():
-  File "game/screens.rpy", line 106, in execute
-    if not deal_cards:
-  File "game/screens.rpy", line 108, in execute
-    for i, card in enumerate(durak.opponent.hand):
-  File "game/screens.rpy", line 109, in execute
-    $ card_x = opponent_card_layout[i]["x"]
-  File "game/screens.rpy", line 109, in <module>
-    $ card_x = opponent_card_layout[i]["x"]
-  File "C:\Users\Admin\Desktop\renpy-8.1.3-sdk\renpy\revertable.py", line 214, in __getitem__
-    rv = list.__getitem__(self, index)
-IndexError: list index out of range
-
-While running game code:
-  File "game/scripts.rpy", line 148, in script
-    "Game Over: [durak.result]"
-  File "game/screens.rpy", line 1, in execute
-    screen durak_base_ui():
-  File "game/screens.rpy", line 1, in execute
-    screen durak_base_ui():
-  File "game/screens.rpy", line 106, in execute
-    if not deal_cards:
-  File "game/screens.rpy", line 108, in execute
-    for i, card in enumerate(durak.opponent.hand):
-  File "game/screens.rpy", line 109, in execute
-    $ card_x = opponent_card_layout[i]["x"]
-  File "game/screens.rpy", line 109, in <module>
-    $ card_x = opponent_card_layout[i]["x"]
-IndexError: list index out of range
-Resetting cache.
-Early init took 326.05s
-Loading error handling took 0.02s
-Loading script took 0.11s
-Loading save slot metadata took 0.01s
-Loading persistent took 0.00s
-Running init code took 0.02s
-Loading analysis data took 0.01s
-Analyze and compile ATL took 0.00s
-Reloading save slot metadata took 0.01s
-Index archives took 0.00s
-Backing up script files to 'C:\\Users\\Admin\\AppData\\Roaming/RenPy/backups\\Durak':
-Dump and make backups took 0.04s
-Cleaning cache took 0.00s
-Making clean stores took 0.00s
-Initial gc took 0.04s
-DPI scale factor: 1.000000
-nvdrs: Loaded, about to disable thread optimizations.
-nvdrs: Disabled thread optimizations.
-Creating interface object took 0.21s
-Cleaning stores took 0.00s
-Init translation took 0.00s
-Build styles took 0.00s
-Load screen analysis took 0.00s
-Analyze screens took 0.01s
-Save screen analysis took 0.01s
-Prepare screens took 0.04s
-Save pyanalysis. took 0.01s
-Save bytecode. took 0.01s
-Running _start took 0.00s
-Interface start took 0.18s
-
-Initializing gl2 renderer:
-primary display bounds: (0, 0, 3440, 1440)
-swap interval: 1 frames
-Windowed mode.
-Vendor: "b'NVIDIA Corporation'"
-Renderer: b'NVIDIA GeForce RTX 3080/PCIe/SSE2'
-Version: b'4.6.0 NVIDIA 576.88'
-Display Info: None
-Screen sizes: virtual=(1920, 1080) physical=(3440, 1369) drawable=(3440, 1369)
-Maximum texture size: 4096x4096
-Screen sizes: virtual=(1920, 1080) physical=(3440, 1369) drawable=(3440, 1369)
-Maximum texture size: 4096x4096
-Discarding table cards [6S, 9S, 7C, JC, 10C, KC, 8C, 8H, QD, JH, 7H, 9H, 10S, 10H, QS, AS, QH, 8D, 7S, KS, 6C, JD, 6H, KH, 9C, 9D, AC, 6D, AD, 7D, 8S, 10D]
-Player hand after ending turn:  []
-Opponent hand after ending turn:  [JS, QC, AH, KD]
-Cleaning stores took 0.00s
-Init translation took 0.00s
-Build styles took 0.00s
-Load screen analysis took 0.02s
-Analyze screens took 0.00s
-Prepare screens took 0.00s
-Running _start took 0.00s
-
-Full traceback:
-  File "game/scripts.rpy", line 2, in script
-    "Welcome to Durak!"
-  File "C:\Users\Admin\Desktop\renpy-8.1.3-sdk\renpy\ast.py", line 2586, in execute
-    Say.execute(self)
-  File "C:\Users\Admin\Desktop\renpy-8.1.3-sdk\renpy\ast.py", line 623, in execute
-    renpy.exports.say(who, what, *args, **kwargs)
-  File "C:\Users\Admin\Desktop\renpy-8.1.3-sdk\renpy\exports\sayexports.py", line 132, in say
-    who(what, *args, **kwargs)
-  File "C:\Users\Admin\Desktop\renpy-8.1.3-sdk\renpy\character.py", line 1471, in __call__
-    self.do_display(who, what, cb_args=self.cb_args, dtt=dtt, **display_args)
-  File "C:\Users\Admin\Desktop\renpy-8.1.3-sdk\renpy\character.py", line 1117, in do_display
-    display_say(who,
-  File "C:\Users\Admin\Desktop\renpy-8.1.3-sdk\renpy\character.py", line 814, in display_say
-    rv = renpy.ui.interact(mouse='say', type=type, roll_forward=roll_forward)
-  File "C:\Users\Admin\Desktop\renpy-8.1.3-sdk\renpy\ui.py", line 301, in interact
-    rv = renpy.game.interface.interact(roll_forward=roll_forward, **kwargs)
-  File "C:\Users\Admin\Desktop\renpy-8.1.3-sdk\renpy\display\core.py", line 2218, in interact
-    repeat, rv = self.interact_core(preloads=preloads, trans_pause=trans_pause, pause=pause, pause_start=pause_start, pause_modal=pause_modal, **kwargs) # type: ignore
-  File "C:\Users\Admin\Desktop\renpy-8.1.3-sdk\renpy\display\core.py", line 3120, in interact_core
+  File "renpy/display/core.py", line 3325, in interact
+    repeat, rv = self.interact_core(preloads=preloads, trans_pause=trans_pause, pause=pause, pause_start=pause_start, **kwargs)
+  File "renpy/display/core.py", line 4035, in interact_core
     self.quit_event()
-  File "C:\Users\Admin\Desktop\renpy-8.1.3-sdk\renpy\display\core.py", line 1818, in quit_event
+  File "renpy/display/core.py", line 2977, in quit_event
     renpy.display.behavior.run(renpy.config.quit_action)
-  File "C:\Users\Admin\Desktop\renpy-8.1.3-sdk\renpy\display\behavior.py", line 401, in run
+  File "renpy/display/behavior.py", line 330, in run
     return action(*args, **kwargs)
-  File "renpy/common/00action_menu.rpy", line 271, in __call__
+  File "renpy/common/00action_menu.rpy", line 220, in __call__
     layout.yesno_screen(layout.QUIT, Quit(False))
-  File "renpy/common/00layout.rpy", line 516, in yesno_screen
-    elif renpy.invoke_in_new_context(layout.invoke_yesno_prompt, None, message):
-  File "C:\Users\Admin\Desktop\renpy-8.1.3-sdk\renpy\game.py", line 303, in invoke_in_new_context
+  File "renpy/common/00layout.rpy", line 527, in yesno_screen
+    if renpy.invoke_in_new_context(layout.invoke_yesno_prompt, None, message):
+  File "renpy/game.py", line 284, in invoke_in_new_context
     return callable(*args, **kwargs)
   File "renpy/common/00layout.rpy", line 472, in invoke_yesno_prompt
     rv = layout.yesno_prompt(*args)
 AttributeError: 'Layout' object has no attribute 'yesno_prompt'
 
 While running game code:
-  File "game/scripts.rpy", line 2, in script
-    "Welcome to Durak!"
-  File "renpy/common/00action_menu.rpy", line 271, in __call__
+  File "game/scripts.rpy", line 160, in script
+    call screen durak
+  File "renpy/common/000statements.rpy", line 569, in execute_call_screen
+    store._return = renpy.call_screen(name, *args, **kwargs)
+  File "renpy/common/00action_menu.rpy", line 220, in __call__
     layout.yesno_screen(layout.QUIT, Quit(False))
-  File "renpy/common/00layout.rpy", line 516, in yesno_screen
-    elif renpy.invoke_in_new_context(layout.invoke_yesno_prompt, None, message):
+  File "renpy/common/00layout.rpy", line 527, in yesno_screen
+    if renpy.invoke_in_new_context(layout.invoke_yesno_prompt, None, message):
   File "renpy/common/00layout.rpy", line 472, in invoke_yesno_prompt
     rv = layout.yesno_prompt(*args)
 AttributeError: 'Layout' object has no attribute 'yesno_prompt'
